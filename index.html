@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EkoteologiMandasi</title>
+    <meta name="description" content="EkoteologiMandasi.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'leaf-green': '#2E8B57',
+                        'leaf-light': '#3CB371',
+                        'leaf-dark': '#1e5f3a',
+                        'earth-brown': '#8B4513',
+                        'earth-light': '#A0522D',
+                        'natural-yellow': '#F5A623',
+                        'bg-light': '#F9FAFB',
+                        'bg-dark': '#0F172A',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Icons (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-bg-light text-slate-800 dark:bg-bg-dark dark:text-slate-200 transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div
+                        class="w-10 h-10 bg-leaf-green text-white rounded-xl flex items-center justify-center font-heading font-bold text-xl shadow-lg">
+                        <i data-lucide="leaf"></i>
+                    </div>
+                    <span
+                        class="font-heading font-bold text-2xl tracking-tight text-leaf-green dark:text-leaf-light">Ekoteologi<span
+                            class="text-earth-brown dark:text-natural-yellow">Mandasi</span></span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#tentang"
+                        class="font-medium hover:text-leaf-green dark:hover:text-leaf-light transition-colors">Tentang
+                        Kami</a>
+                    <a href="#program"
+                        class="font-medium hover:text-leaf-green dark:hover:text-leaf-light transition-colors">Program</a>
+                    <a href="#galeri"
+                        class="font-medium hover:text-leaf-green dark:hover:text-leaf-light transition-colors">Galeri</a>
+                    <a href="#kontak"
+                        class="font-medium hover:text-leaf-green dark:hover:text-leaf-light transition-colors">Kontak</a>
+
+                    <div class="flex items-center gap-4 border-l border-slate-300 dark:border-slate-700 pl-6">
+                        <button id="theme-toggle"
+                            class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+                            aria-label="Toggle Dark Mode">
+                            <i data-lucide="moon" id="theme-icon-dark" class="w-5 h-5"></i>
+                            <i data-lucide="sun" id="theme-icon-light" class="w-5 h-5 hidden text-natural-yellow"></i>
+                        </button>
+                        <a href="#kontak"
+                            class="bg-leaf-green hover:bg-leaf-dark text-white px-6 py-2.5 rounded-full font-medium transition-colors shadow-lg shadow-leaf-green/30">
+                            Gabung
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center gap-4">
+                    <button id="mobile-theme-toggle"
+                        class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+                        <i data-lucide="moon" id="mobile-theme-icon-dark" class="w-5 h-5"></i>
+                        <i data-lucide="sun" id="mobile-theme-icon-light"
+                            class="w-5 h-5 hidden text-natural-yellow"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2 text-slate-600 dark:text-slate-300">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 absolute w-full shadow-xl">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#tentang"
+                    class="block px-3 py-3 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Tentang
+                    Kami</a>
+                <a href="#program"
+                    class="block px-3 py-3 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Program</a>
+                <a href="#galeri"
+                    class="block px-3 py-3 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Galeri</a>
+                <a href="#kontak"
+                    class="block px-3 py-3 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Kontak</a>
+                <a href="#kontak"
+                    class="block mt-4 text-center bg-leaf-green text-white px-3 py-3 rounded-xl font-medium">Gabung
+                    Komunitas</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+            <!-- Background with overlay -->
+            <div class="absolute inset-0 z-0">
+                <img id="hero-img"
+                    src="https://images.unsplash.com/photo-1592424001806-03fcb593630f?q=80&w=2000&auto=format&fit=crop"
+                    alt="Pertanian Modern" class="w-full h-full object-cover" loading="lazy" />
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-900/40 dark:from-slate-900/90 dark:to-slate-900/60">
+                </div>
+            </div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="max-w-3xl reveal active">
+                    <span
+                        class="inline-block py-1 px-3 rounded-full bg-leaf-green/20 text-leaf-light border border-leaf-green/30 backdrop-blur-sm font-medium text-sm mb-6 uppercase tracking-wider">
+                        MAN 2 Kota Sukabumi
+                    </span>
+                    <h1 class="text-dynamic-4xl font-heading font-bold text-white mb-6 leading-tight">
+                        Merawat<span class="text-leaf-light">Bumi</span> & <span class="text-natural-yellow">Mengokohkan
+                            Iman</span>
+                    </h1>
+                    <p class="text-dynamic-lg text-slate-200 mb-10 max-w-2xl leading-relaxed">
+                        Selamat datang di gerakan Ekoteologi MAN 2 Kota Sukabumi. Kami percaya bahwa menjaga kelestarian
+                        alam bukan sekadar
+                        aksi sosial, melainkan bentuk ibadah. Bumi adalah amanah
+                        yang wajib kita jaga bersama. Mari kembali ke fitrah manusia sebagai
+                        pemelihara lingkungan, demi keberlangsungan hidup generasi masa depan dan kehormatan di
+                        hadapan-Nya.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#kontak"
+                            class="px-8 py-4 bg-leaf-green hover:bg-leaf-dark text-white rounded-xl font-medium text-lg transition-all shadow-lg shadow-leaf-green/40 hover:-translate-y-1 flex items-center gap-2">
+                            Gabung Sekarang <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#tentang"
+                            class="px-8 py-4 bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 rounded-xl font-medium text-lg transition-all hover:-translate-y-1">
+                            Pelajari Lebih Lanjut
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+                <a href="#tentang" class="text-white/70 hover:text-white transition-colors">
+                    <i data-lucide="chevron-down" class="w-8 h-8"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Placeholder sections to be expanded in next steps -->
+        <!-- Tentang Section -->
+        <section id="tentang" class="py-24 bg-white dark:bg-slate-900 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="reveal-left relative">
+                        <!-- Decorative background element -->
+                        <div class="absolute -top-10 -left-10 w-32 h-32 bg-natural-yellow/20 rounded-full blur-3xl">
+                        </div>
+                        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-leaf-green/20 rounded-full blur-3xl">
+                        </div>
+
+                        <div
+                            class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800 transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                            <img src="https://images.unsplash.com/photo-1631401551847-78450ef649d8?q=80&w=1000&auto=format&fit=crop"
+                                alt="Pembelajar lingkungan Muda" class="w-full h-auto object-cover" loading="lazy" />
+                        </div>
+
+                        <!-- Floating badge -->
+                        <div
+                            class="absolute -bottom-6 -left-6 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl flex items-center gap-4">
+                            <div
+                                class="w-14 h-14 bg-leaf-green/10 rounded-full flex items-center justify-center text-leaf-green">
+                                <i data-lucide="sprout" class="w-8 h-8"></i>
+                            </div>
+                            <div>
+                                <p class="text-dynamic-xl font-bold text-slate-800 dark:text-white">1K+</p>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 font-medium">Pembelajar
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reveal-right">
+                        <h2
+                            class="text-leaf-green dark:text-leaf-light font-bold tracking-wider uppercase text-sm mb-3">
+                            Tentang Kami</h2>
+                        <h3
+                            class="text-dynamic-3xl font-heading font-bold mb-6 text-slate-900 dark:text-white leading-tight">
+                            Paradigma peduli lingkungan berbasis keimanan
+                        </h3>
+                        <p class="text-dynamic-base text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
+                            Wadah pembelajaran lingkungan dan ketahanan
+                            pangan keberlanjutan.
+                        </p>
+
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div
+                                    class="flex-shrink-0 w-12 h-12 bg-natural-yellow/20 rounded-xl flex items-center justify-center text-earth-brown dark:text-natural-yellow">
+                                    <i data-lucide="target" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2 font-heading">Visi
+                                    </h4>
+                                    <p class="text-slate-600 dark:text-slate-400">........</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div
+                                    class="flex-shrink-0 w-12 h-12 bg-leaf-green/10 rounded-xl flex items-center justify-center text-leaf-green">
+                                    <i data-lucide="rocket" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2 font-heading">Misi
+                                    </h4>
+                                    <p class="text-slate-600 dark:text-slate-400">.........
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Program Section -->
+        <section id="program" class="py-24 bg-slate-50 dark:bg-slate-800/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                    <h2
+                        class="text-earth-brown dark:text-natural-yellow font-bold tracking-wider uppercase text-sm mb-3">
+                        Program</h2>
+                    <h3 class="text-dynamic-3xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+                        Kegiatan Kami
+                    </h3>
+                    <p class="text-dynamic-base text-slate-600 dark:text-slate-400">
+                        Menyelenggarakan program kegiatan yang mendukung perkembangan kecintaan ekologi.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div
+                        class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 reveal border border-slate-100 dark:border-slate-700">
+                        <div
+                            class="w-14 h-14 bg-leaf-green/10 rounded-2xl flex items-center justify-center text-leaf-green mb-6">
+                            <i data-lucide="book-open" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="text-xl font-bold font-heading text-slate-900 dark:text-white mb-3">Spiritualitas
+                            Hijau</h4>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Mewujudkan pemahaman integral dari konsep keyakinan yang utuh melalui pelestarian lingkungan
+                            dan praktik keagamaan sehari-hari.
+                        </p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 reveal border border-slate-100 dark:border-slate-700"
+                        style="transition-delay: 100ms;">
+                        <div
+                            class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 mb-6">
+                            <i data-lucide="book-open" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="text-xl font-bold font-heading text-slate-900 dark:text-white mb-3">Amanah Ekologis
+                        </h4>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Mengedukasi warga madrasah menjadi (steward/khalifah) bahwa manusia adalah penjaga dan
+                            pengurus.
+                        </p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 reveal border border-slate-100 dark:border-slate-700"
+                        style="transition-delay: 100ms;">
+                        <div
+                            class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 mb-6">
+                            <i data-lucide="cpu" class="w-7 h-7"></i>
+                        </div>
+                        <h4 class="text-xl font-bold font-heading text-slate-900 dark:text-white mb-3">Aksi Amaliah
+                            Nyata
+                        </h4>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Pengamalan ajaran praktis, mulai menjaga lingkungan, bijak
+                            mengelola sampah, hingga pertanian berteknologi.
+                        </p>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+        <!-- Statistik Section -->
+        <section id="statistik" class="py-20 bg-leaf-green relative overflow-hidden">
+            <!-- Background pattern -->
+            <div class="absolute inset-0 opacity-10">
+                <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="pattern-boxes" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                            <rect x="0" y="0" width="2" height="2" fill="currentColor"></rect>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#pattern-boxes)"></rect>
+                </svg>
+            </div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div
+                    class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center divide-y md:divide-y-0 md:divide-x divide-leaf-light/30">
+                    <div class="reveal pb-10 md:pb-0">
+                        <div class="flex justify-center mb-4 text-natural-yellow">
+                            <i data-lucide="users" class="w-10 h-10"></i>
+                        </div>
+                        <div class="text-5xl font-heading font-bold text-white mb-2 flex items-center justify-center">
+                            <span class="counter" data-target="1000">0</span>+
+                        </div>
+                        <div class="text-leaf-light font-medium uppercase tracking-wider text-sm">Partisipasi
+                        </div>
+                    </div>
+
+                    <div class="reveal py-10 md:py-0" style="transition-delay: 150ms;">
+                        <div class="flex justify-center mb-4 text-natural-yellow">
+                            <i data-lucide="graduation-cap" class="w-10 h-10"></i>
+                        </div>
+                        <div class="text-5xl font-heading font-bold text-white mb-2 flex items-center justify-center">
+                            <span class="counter" data-target="5">0</span>+
+                        </div>
+                        <div class="text-leaf-light font-medium uppercase tracking-wider text-sm">Kegiatan Selesai
+                        </div>
+                    </div>
+
+                    <div class="reveal pt-10 md:pt-0" style="transition-delay: 300ms;">
+                        <div class="flex justify-center mb-4 text-natural-yellow">
+                            <i data-lucide="map" class="w-10 h-10"></i>
+                        </div>
+                        <div class="text-5xl font-heading font-bold text-white mb-2 flex items-center justify-center">
+                            <span class="counter" data-target="100">0</span> m
+                        </div>
+                        <div class="text-leaf-light font-medium uppercase tracking-wider text-sm">Luas Lahan Binaan
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galeri Section -->
+        <section id="galeri" class="py-24 bg-white dark:bg-slate-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal">
+                    <div class="max-w-2xl">
+                        <h2
+                            class="text-leaf-green dark:text-leaf-light font-bold tracking-wider uppercase text-sm mb-3">
+                            Galeri Kegiatan</h2>
+                        <h3 class="text-dynamic-3xl font-heading font-bold text-slate-900 dark:text-white mb-4">
+                            Momen EkoteologiMandasi
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-400">
+                            Melihat lebih dekat aktivitas, pembelajar lingkungan di MAN 2 Kota Sukabumi.
+                        </p>
+                    </div>
+                    <div class="mt-6 md:mt-0">
+                        <a href="#"
+                            class="inline-flex items-center gap-2 text-leaf-green hover:text-leaf-dark dark:text-leaf-light dark:hover:text-white font-medium transition-colors">
+                            Lihat Semua <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 auto-rows-[250px]">
+                    <!-- Image 1 (Large) -->
+                    <div class="group relative rounded-2xl overflow-hidden md:col-span-2 md:row-span-2 reveal">
+                        <img src="https://images.unsplash.com/photo-1615671524827-c1fe3973b648?q=80&w=1000&auto=format&fit=crop"
+                            alt="Pembenihan"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            loading="lazy">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-0 p-6 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <span
+                                class="bg-natural-yellow text-slate-900 text-xs font-bold px-3 py-1 rounded-full mb-2 inline-block">Pembenihan</span>
+                            <h4 class="text-white font-heading font-bold text-xl">Pamebenihan Hidroponik Raweuy</h4>
+                        </div>
+                    </div>
+
+                    <!-- Image 2 -->
+                    <div class="group relative rounded-2xl overflow-hidden reveal" style="transition-delay: 100ms;">
+                        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=600&auto=format&fit=crop"
+                            alt="Pertanian Organik"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            loading="lazy">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-0 p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <h4 class="text-white font-heading font-bold">Sayur Organik Segar</h4>
+                        </div>
+                    </div>
+
+                    <!-- Image 3 -->
+                    <div class="group relative rounded-2xl overflow-hidden reveal" style="transition-delay: 200ms;">
+                        <img src="https://images.unsplash.com/photo-1648735257013-2fb9604b15c6?q=80&w=600&auto=format&fit=crop"
+                            alt="Perawatan Tanaman"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            loading="lazy">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-0 p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <h4 class="text-white font-heading font-bold">Perawatan Berkala</h4>
+                        </div>
+                    </div>
+
+                    <!-- Image 4 -->
+                    <div class="group relative rounded-2xl overflow-hidden md:col-span-2 reveal"
+                        style="transition-delay: 300ms;">
+                        <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=1000&auto=format&fit=crop"
+                            alt="Teknologi IoT"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            loading="lazy">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-0 p-6 translate-y-6 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <span
+                                class="bg-leaf-green text-white text-xs font-bold px-3 py-1 rounded-full mb-2 inline-block">Teknologi</span>
+                            <h4 class="text-white font-heading font-bold text-xl">Instalasi Sensor Suhu IoT</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Testimoni Section -->
+        <section id="testimoni" class="py-24 bg-slate-50 dark:bg-slate-800/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                    <h2
+                        class="text-earth-brown dark:text-natural-yellow font-bold tracking-wider uppercase text-sm mb-3">
+                        Kisah</h2>
+                    <h3 class="text-dynamic-3xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+                        Apa Kata Mereka ?
+                    </h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div
+                        class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow reveal border border-slate-100 dark:border-slate-700">
+                        <div class="flex text-natural-yellow mb-6">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-400 mb-8 italic">
+                            "Awalnya saya ragu berkebun didepan rumah. namun setelah mengikutinya,
+                            sekarang saya bisa panen selada dan kangkung hidroponik dan keimanan pun semakin
+                            yakin
+                            !"
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <img src="https://i.pravatar.cc/150?img=12" alt="Andi"
+                                class="w-14 h-14 rounded-full border-2 border-leaf-green">
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Fulan</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Pekerja IT & hoby menanam</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Kontak Section -->
+        <section id="kontak" class="py-24 bg-white dark:bg-slate-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <!-- Contact Form -->
+                    <div class="reveal-left">
+                        <h2
+                            class="text-leaf-green dark:text-leaf-light font-bold tracking-wider uppercase text-sm mb-3">
+                            Hubungi Kami</h2>
+                        <h3 class="text-dynamic-3xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+                            Mari Berkolaborasi!
+                        </h3>
+                        s
+
+                        <!-- Google Maps & Info -->
+                        <div class="reveal-right flex flex-col justify-between">
+                            <div class="bg-slate-100 dark:bg-slate-800 rounded-2xl p-8 mb-8 flex-grow">
+                                <h4 class="font-heading font-bold text-xl text-slate-900 dark:text-white mb-6">Informasi
+                                    Kontak</h4>
+                                <div class="space-y-6">
+                                    <div class="flex items-start gap-4">
+                                        <div
+                                            class="w-12 h-12 bg-white dark:bg-slate-700 rounded-full flex items-center justify-center text-leaf-green flex-shrink-0">
+                                            <i data-lucide="map-pin" class="w-6 h-6"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-bold text-slate-900 dark:text-white">Alamat</h5>
+                                            <p class="text-slate-600 dark:text-slate-400">Jl. Palasari No. 14,
+                                                Warudoyong, Kota Sukabumi</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-4">
+                                        <div
+                                            class="w-12 h-12 bg-white dark:bg-slate-700 rounded-full flex items-center justify-center text-leaf-green flex-shrink-0">
+                                            <i data-lucide="phone" class="w-6 h-6"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-bold text-slate-900 dark:text-white">WhatsApp</h5>
+                                            <p class="text-slate-600 dark:text-slate-400">+62 800-0000-0000</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-4">
+                                        <div
+                                            class="w-12 h-12 bg-white dark:bg-slate-700 rounded-full flex items-center justify-center text-leaf-green flex-shrink-0">
+                                            <i data-lucide="mail" class="w-6 h-6"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-bold text-slate-900 dark:text-white">Email</h5>
+                                            <p class="text-slate-600 dark:text-slate-400">ekoteologimandasi@gmail.com
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Map Embed -->
+                            <div
+                                class="h-64 w-full rounded-2xl overflow-hidden shadow-lg border-2 border-slate-100 dark:border-slate-800">
+                                <!-- Standard Google Maps Embed IFRAME -->
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d566.5271734804837!2d106.90876094799108!3d-6.920924845789071!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6837bed4165153%3A0xf14b7be9d25a2189!2sMAN%202%20Kota%20Sukabumi!5e0!3m2!1sen!2sid!4v1779167155978!5m2!1sen!2sid"
+                                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 py-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div
+                            class="w-10 h-10 bg-leaf-green text-white rounded-xl flex items-center justify-center font-heading font-bold text-xl">
+                            <i data-lucide="leaf"></i>
+                        </div>
+                        <span class="font-heading font-bold text-2xl tracking-tight text-white">Ekoteologi<span
+                                class="text-natural-yellow">Mandasi</span></span>
+                    </div>
+                    <p class="text-slate-400 mb-6 max-w-sm">
+                        Merawat bumi dan mengokohkan keimanan.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-leaf-green hover:text-white transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-leaf-green hover:text-white transition-colors">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-leaf-green hover:text-white transition-colors">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-heading font-bold text-white text-lg mb-6">Tautan Cepat</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#tentang" class="text-slate-400 hover:text-leaf-light transition-colors">Tentang
+                                Kami</a></li>
+                        <li><a href="#program"
+                                class="text-slate-400 hover:text-leaf-light transition-colors">Program</a></li>
+                        <li><a href="#galeri" class="text-slate-400 hover:text-leaf-light transition-colors">Galeri
+                                Kegiatan</a></li>
+                        <li><a href="#statistik" class="text-slate-400 hover:text-leaf-light transition-colors">Dampak
+                                Kami</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-heading font-bold text-white text-lg mb-6">Legal</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-slate-400 hover:text-leaf-light transition-colors">Syarat &
+                                Ketentuan</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-leaf-light transition-colors">Kebijakan
+                                Privasi</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-leaf-light transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div
+                class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
+                <p>&copy; 2026 EkoteologiMandasi. Hak Cipta Dilindungi.</p>
+                <p class="mt-2 md:mt-0">Didesain dengan <i data-lucide="heart"
+                        class="w-4 h-4 inline text-red-500 fill-current"></i> oleh Tim Agritech.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/6280000000000" target="_blank"
+        class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform z-50 flex items-center justify-center group">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+        <span
+            class="absolute right-full mr-4 bg-slate-800 text-white text-sm px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+            Hubungi Kami
+        </span>
+    </a>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>
